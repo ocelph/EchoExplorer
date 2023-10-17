@@ -25,16 +25,26 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback{
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         Button button = (Button) findViewById(R.id.btnback);
+        Button button2 = (Button) findViewById(R.id.other);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openActivity2();
             }
         });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openOther();}});
     }
 
     public void openActivity2() {
         Intent intent = new Intent(this,Login.class);
+        startActivity(intent);
+    }
+
+    public void openOther() {
+        Intent intent = new Intent(this,Other.class);
         startActivity(intent);
     }
     @Override

@@ -16,18 +16,48 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button button = (Button) findViewById(R.id.loginpage);
-        button.setOnClickListener(new View.OnClickListener() {
+
+        Button button1= (Button) findViewById(R.id.mainLoginBtn);
+        Button button2= (Button) findViewById(R.id.mainRegisterBtn);
+        Button button3= (Button) findViewById(R.id.mainManageBtn);
+
+        button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openLogin();
             }
         });
 
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openRegister();
+            }
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openManage();
+            }
+        });
+
+
     }
 
+
     public void openLogin() {
-        Intent intent = new Intent(this, Login.class);
+        Intent intent = new Intent(this,Login.class);
+        startActivity(intent);
+    }
+
+    public void openRegister() {
+        Intent intent = new Intent(this,Register.class);
+        startActivity(intent);
+    }
+
+    public void openManage() {
+        Intent intent = new Intent(this,ManageRoute.class);
         startActivity(intent);
     }
 

@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
+    tools:context=".ManageRoute">
 
     <TextView
         android:id="@+id/manageRoute"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="60dp"
         android:fontFamily="@font/poppins_medium"
         android:text="Managing Route"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.435"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <TextView
         android:id="@+id/startPoint"
@@ -34,6 +31,7 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="-6dp"
         tools:layout_editor_absoluteY="136dp" />
+
 
     <TextView
         android:id="@+id/endPoint"
@@ -57,16 +55,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/startPoint">
 
-        <SearchView
-            android:id="@+id/startSearch"
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:layout_weight="1"
-            android:iconifiedByDefault="false"
-            android:queryHint="Search..."
-            tools:ignore="MissingConstraints" />
-    </LinearLayout>
 
+
+    </LinearLayout>
     <LinearLayout
         android:layout_width="380dp"
         android:layout_height="40dp"
@@ -76,16 +67,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/endPoint">
 
-        <SearchView
-            android:id="@+id/endSearch"
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:layout_weight="1"
-            android:iconifiedByDefault="false"
-            android:queryHint="Search..."
-            tools:ignore="MissingConstraints" />
-    </LinearLayout>
 
+    </LinearLayout>
     <ImageButton
         android:id="@+id/favouritesButton"
         android:layout_width="37dp"
@@ -135,8 +118,8 @@
         android:backgroundTint="#393838"
         android:text="Start Route"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="145dp"
-        tools:layout_editor_absoluteY="667dp" />
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="655dp" />
 
     <ImageView
         android:id="@+id/starimageView"
@@ -158,4 +141,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/refresh" />
 
+    <Button
+        android:id="@+id/goBackToMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go Back"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="2dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,13 +7,16 @@
     android:paddingTop="16dp"
     android:paddingRight="16dp"
     android:paddingBottom="16dp"
-    tools:context=".Register">
+    tools:context=".Register"
+    android:background="@color/black">
 
     <Button
         android:id="@+id/btnGoBackLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Go back" />
+        android:text="Go back"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +34,9 @@
             android:layout_centerVertical="true"
             android:ems="10"
             android:hint="First name"
-            android:inputType="text" />
+            android:inputType="text"
+            android:textColorHint="@color/whitish"
+            android:textColor="@color/white"/>
 
         <EditText
             android:id="@+id/lastName"
@@ -41,7 +46,9 @@
             android:layout_centerVertical="true"
             android:ems="10"
             android:hint="Last name"
-            android:inputType="text" />
+            android:inputType="text"
+            android:textColorHint="@color/whitish"
+            android:textColor="@color/white"/>
 
         <EditText
             android:id="@+id/email"
@@ -51,7 +58,9 @@
             android:layout_centerVertical="true"
             android:ems="10"
             android:hint="Email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/whitish"
+            android:textColor="@color/white"/>
 
         <EditText
             android:id="@+id/password"
@@ -60,14 +69,17 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:hint="Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColorHint="@color/whitish"
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/register"
-            style="?android:attr/buttonStyleSmall"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:text="Register" />
+            android:text="Register"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"/>
     </LinearLayout>
 
 

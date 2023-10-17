@@ -4,139 +4,190 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".ManageRoute">
+
 
     <TextView
         android:id="@+id/manageRoute"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="68dp"
         android:fontFamily="@font/poppins_medium"
         android:text="Managing Route"
+        android:textColor="@color/white"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.435"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/startPoint"
-        android:layout_width="248dp"
+    <ImageButton
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:fontFamily="@font/poppins_medium"
-        android:text="     Start Point"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-6dp"
-        tools:layout_editor_absoluteY="136dp" />
+        android:layout_marginTop="20dp"
+        android:background="@color/black"
+        android:contentDescription="NULL"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.393"
+        app:layout_constraintStart_toEndOf="@+id/startText"
+        app:layout_constraintTop_toBottomOf="@+id/startPoint"
+        app:srcCompat="@drawable/addbutton"
+        tools:ignore="MissingConstraints" />
 
+    <EditText
+        android:id="@+id/endText"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Enter your destination"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/endPoint"
+        tools:ignore="MissingConstraints"
+        android:textColorHint="@color/whitish"
+        android:textColor="@color/white"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/startText"
+        app:layout_constraintHorizontal_bias="0.586"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startPoint"
+        app:srcCompat="?android:attr/actionModeWebSearchDrawable" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toStartOf="@+id/endText"
+        app:layout_constraintHorizontal_bias="0.586"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/endPoint"
+        app:srcCompat="?android:attr/actionModeWebSearchDrawable" />
 
     <TextView
         android:id="@+id/endPoint"
         android:layout_width="248dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
         android:layout_weight="1"
         android:fontFamily="@font/poppins_medium"
         android:text="     End Point"
+        android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startText"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/startText"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="Enter your start location"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startPoint"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="286dp" />
+        android:textColorHint="@color/whitish"
+        android:textColor="@color/white"/>
 
-    <LinearLayout
-        android:layout_width="380dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
+    <TextView
+        android:id="@+id/startPoint"
+        android:layout_width="248dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="152dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/poppins_medium"
+        android:text="     Start Point"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.153"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startPoint">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
-
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="380dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/endPoint">
-
-
-    </LinearLayout>
     <ImageButton
         android:id="@+id/favouritesButton"
-        android:layout_width="37dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="24dp"
+        android:layout_width="49dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="28dp"
         android:layout_marginBottom="24dp"
         android:background="#00FFFFFF"
+        android:contentDescription="NULL"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintCircleRadius="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/solidbutton"
         tools:layout_constraintCircleRadius="100dp" />
-
-    <ImageButton
-        android:id="@+id/previousrouteButton"
-        android:layout_width="37dp"
-        android:layout_height="38dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:background="#00FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintCircleRadius="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/solidbutton"
-        tools:ignore="MissingConstraints"
-        tools:layout_constraintCircleRadius="100dp" />
-
-    <ImageButton
-        android:id="@+id/addrouteButton"
-        android:layout_width="27dp"
-        android:layout_height="27dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="484dp"
-        android:background="#00FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintCircleRadius="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/solidbutton"
-        tools:ignore="MissingConstraints"
-        tools:layout_constraintCircleRadius="100dp"
-        tools:srcCompat="@android:drawable/ic_menu_add" />
-
-    <Button
-        android:id="@+id/startRoutebutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#393838"
-        android:text="Start Route"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="151dp"
-        tools:layout_editor_absoluteY="655dp" />
 
     <ImageView
         android:id="@+id/starimageView"
         android:layout_width="26dp"
         android:layout_height="18dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginBottom="35dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/whitestar" />
+
+    <ImageButton
+        android:id="@+id/previousrouteButton"
+        android:layout_width="49dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="24dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="NULL"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintCircleRadius="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/solidbutton"
+        tools:ignore="MissingConstraints"
+        tools:layout_constraintCircleRadius="100dp" />
+
+    <Button
+        android:id="@+id/startRoutebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Start Route"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"/>
 
     <ImageView
         android:id="@+id/refreshimageView"
         android:layout_width="26dp"
         android:layout_height="18dp"
-        android:layout_marginEnd="29dp"
-        android:layout_marginBottom="33dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/refresh" />
@@ -145,6 +196,13 @@
         android:id="@+id/goBackToMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Go Back" />
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/white"
+        android:text="Go Back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        android:textColor="@color/black" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

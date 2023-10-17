@@ -4,179 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".ListedRoutes">
+
+
     <TextView
         android:id="@+id/manageRoute"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="72dp"
         android:fontFamily="@font/poppins_medium"
         android:text="Listed Routes"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="350dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/border"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/manageRoute"
-        tools:ignore="MissingConstraints">
-
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout2"
-        android:layout_width="350dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/border"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.442"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-        tools:ignore="MissingConstraints">
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout3"
-        android:layout_width="350dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/border"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2"
-        tools:ignore="MissingConstraints" />
-
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout4"
-        android:layout_width="350dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/border"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout3"
-        tools:ignore="MissingConstraints">
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="43dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/manageRoute">
-
-        <TextView
-            android:id="@+id/route1"
-            android:layout_width="210dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/poppins_medium"
-            android:text="     STEM Complex (STM)"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/address1"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/poppins_medium"
-            android:text="150 Louis-Past.."
-            android:textSize="16sp"
-            tools:ignore="MissingConstraints" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
-
-        <TextView
-            android:id="@+id/route2"
-            android:layout_width="210dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/poppins_medium"
-            android:text="     Ottawa City Hall"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/address2"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/poppins_medium"
-            android:text="110 Laurier Ave..."
-            android:textSize="16sp"
-            tools:ignore="MissingConstraints" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
-
-        <TextView
-            android:id="@+id/route3"
-            android:layout_width="210dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/poppins_medium"
-            android:text="     Loblaws Rideau Street"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/address3"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/poppins_medium"
-            android:text="363 Rideau Str..."
-            android:textSize="16sp"
-            tools:ignore="MissingConstraints" />
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/white" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="42dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout3">
 
@@ -189,7 +41,8 @@
             android:text="     SITE Building (STM)"
             android:textSize="16sp"
             android:textStyle="bold"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/address4"
@@ -199,14 +52,180 @@
             android:fontFamily="@font/poppins_medium"
             android:text="800 King Edwa..."
             android:textSize="16sp"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            android:textColor="@color/white" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="54dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/manageRoute">
+
+        <TextView
+            android:id="@+id/route1"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_medium"
+            android:text="     STEM Complex (STM)"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/address1"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_medium"
+            android:text="150 Louis-Past.."
+            android:textSize="16sp"
+            tools:ignore="MissingConstraints"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="350dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.442"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        tools:ignore="MissingConstraints">
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout4"
+        android:layout_width="350dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout3"
+        tools:ignore="MissingConstraints">
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="350dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/manageRoute"
+        tools:ignore="MissingConstraints">
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout3"
+        android:layout_width="350dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2"
+        tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
+
+        <TextView
+            android:id="@+id/route3"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_medium"
+            android:text="     Loblaws Rideau Street"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/address3"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_medium"
+            android:text="363 Rideau Str..."
+            android:textSize="16sp"
+            tools:ignore="MissingConstraints"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+        <TextView
+            android:id="@+id/route2"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_medium"
+            android:text="     Ottawa City Hall"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/address2"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_medium"
+            android:text="110 Laurier Ave..."
+            android:textSize="16sp"
+            tools:ignore="MissingConstraints"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+
     <Button
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
         android:id="@+id/goBackToManage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Go back"
-        tools:layout_editor_absoluteY="4dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

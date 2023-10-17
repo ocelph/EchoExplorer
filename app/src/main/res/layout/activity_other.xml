@@ -17,25 +17,34 @@
             android:id="@+id/buttonForSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Save" />
+            android:text="Save"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/buttonForShare"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Share" />
+            android:text="Share"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            />
 
         <Button
             android:id="@+id/buttonForNew"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New" />
+            android:text="New"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/buttonForBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Back" />
+            android:text="Back"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
 

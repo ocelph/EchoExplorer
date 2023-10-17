@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/manageRoute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Managing Route"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/startPoint"
+        android:layout_width="248dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/poppins_medium"
+        android:text="     Start Point"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-6dp"
+        tools:layout_editor_absoluteY="136dp" />
+
+    <TextView
+        android:id="@+id/endPoint"
+        android:layout_width="248dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/poppins_medium"
+        android:text="     End Point"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="286dp" />
+
+    <LinearLayout
+        android:layout_width="380dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startPoint">
+
+        <SearchView
+            android:id="@+id/startSearch"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search..."
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="380dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/endPoint">
+
+        <SearchView
+            android:id="@+id/endSearch"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search..."
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/favouritesButton"
+        android:layout_width="37dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintCircleRadius="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/solidbutton"
+        tools:layout_constraintCircleRadius="100dp" />
+
+    <ImageButton
+        android:id="@+id/previousrouteButton"
+        android:layout_width="37dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintCircleRadius="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/solidbutton"
+        tools:ignore="MissingConstraints"
+        tools:layout_constraintCircleRadius="100dp" />
+
+    <ImageButton
+        android:id="@+id/addrouteButton"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="484dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintCircleRadius="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/solidbutton"
+        tools:ignore="MissingConstraints"
+        tools:layout_constraintCircleRadius="100dp"
+        tools:srcCompat="@android:drawable/ic_menu_add" />
+
+    <Button
+        android:id="@+id/startRoutebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#393838"
+        android:text="Start Route"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="145dp"
+        tools:layout_editor_absoluteY="667dp" />
+
+    <ImageView
+        android:id="@+id/starimageView"
+        android:layout_width="26dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginBottom="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/whitestar" />
+
+    <ImageView
+        android:id="@+id/refreshimageView"
+        android:layout_width="26dp"
+        android:layout_height="18dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="33dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/refresh" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

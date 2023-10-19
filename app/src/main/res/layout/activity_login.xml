@@ -36,6 +36,7 @@
             android:gravity="center_vertical|center"
             android:layout_centerHorizontal="true"
             android:text="Echo Explorer"
+            android:textSize="40dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/white" />
 
@@ -99,6 +100,7 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:text="Log in"
+            android:textSize="40dp"
             android:textColor="@color/black"
             android:backgroundTint="@color/white"/>
 
@@ -111,6 +113,7 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:text="Register instead"
+            android:textSize="40dp"
             android:textColor="@color/black"
             android:backgroundTint="@color/white"/>
 

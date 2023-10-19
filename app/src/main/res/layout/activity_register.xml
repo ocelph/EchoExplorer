@@ -77,7 +77,9 @@
             android:id="@+id/register"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:text="Register"
+            android:text="REGISTER"
+            android:textStyle= "bold"
+            android:textSize="40dp"
             android:backgroundTint="@color/white"
             android:textColor="@color/black"/>
     </LinearLayout>

@@ -26,7 +26,7 @@ public class ListedRoutes extends AppCompatActivity {
     }
 
     public void openManageRoute() {
-        Intent intent = new Intent(this,ManageRoute.class);
+        Intent intent = new Intent(this,Other.class);
         startActivity(intent);
     }
 }

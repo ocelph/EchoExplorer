@@ -43,7 +43,15 @@
             android:textColor="@color/black"
             android:textStyle= "bold"/>
 
-
+        <Button
+            android:id="@+id/buttonLogOff"
+            android:layout_width="282dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:text="LOG OFF"
+            android:textColor="@color/black"
+            android:textSize="40dp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

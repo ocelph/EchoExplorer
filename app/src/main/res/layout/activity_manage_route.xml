@@ -16,7 +16,7 @@
         android:fontFamily="@font/poppins_medium"
         android:text="Managing Route"
         android:textColor="@color/white"
-        android:textSize="34sp"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +86,7 @@
         android:fontFamily="@font/poppins_medium"
         android:text="     End Point"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.153"
@@ -122,7 +122,7 @@
         android:fontFamily="@font/poppins_medium"
         android:text="     Start Point"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.153"
@@ -174,14 +174,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:text="Start Route"
+        android:text="START ROUTE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
         android:backgroundTint="@color/white"
         android:textStyle= "bold"
-        android:textSize="40dp"
+        android:textSize="30dp"
         android:textColor="@color/black"/>
 
     <ImageView
@@ -193,18 +193,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/refresh" />
-
-    <Button
-        android:id="@+id/goBackToMain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:backgroundTint="@color/white"
-        android:text="Go Back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        android:textColor="@color/black" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

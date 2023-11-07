@@ -18,7 +18,6 @@ public class Login extends AppCompatActivity {
 
         Button register = (Button) findViewById(R.id.register);
         Button login = (Button) findViewById(R.id.login);
-        Button goBackMain = (Button) findViewById(R.id.btnGoBackMain);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,12 +33,7 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        goBackMain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openMainActivity();
-            }
-        });
+
     }
 
     public void openRegister() {
@@ -52,8 +46,5 @@ public class Login extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openMainActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
+
 }

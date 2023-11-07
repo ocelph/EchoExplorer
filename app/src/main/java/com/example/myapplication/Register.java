@@ -17,7 +17,6 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         Button register = (Button) findViewById(R.id.register);
-        Button goBackLogin = (Button) findViewById(R.id.btnGoBackLogin);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -25,12 +24,7 @@ public class Register extends AppCompatActivity {
             }
         });
 
-        goBackLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openLogin();
-            }
-        });
+
     }
 
     public void openMap() {
@@ -38,8 +32,5 @@ public class Register extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openLogin() {
-        Intent intent = new Intent(this, Login.class);
-        startActivity(intent);
-    }
+
 }

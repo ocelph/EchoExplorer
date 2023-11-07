@@ -17,7 +17,6 @@ public class Other extends AppCompatActivity {
         Button button = (Button) findViewById(R.id.buttonForSave);
         Button button1 = (Button) findViewById(R.id.buttonForShare);
         Button button2 = (Button) findViewById(R.id.buttonForNew);
-        Button button3 = (Button) findViewById(R.id.buttonForBack);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,14 +35,7 @@ public class Other extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openMap();
-            }
-        });
-
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openMap();
+                openRecord();
             }
         });
     }
@@ -59,8 +51,8 @@ public class Other extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openMap() {
-        Intent intent = new Intent(this, Map.class);
+    public void openRecord() {
+        Intent intent = new Intent(this, Record.class);
         startActivity(intent);
     }
 

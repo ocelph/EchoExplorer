@@ -15,18 +15,8 @@ public class ListedRoutes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listed_routes);
 
-        Button button = (Button) findViewById(R.id.goBackToManage);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openManageRoute();
-            }
-        });
+
     }
 
-    public void openManageRoute() {
-        Intent intent = new Intent(this,Other.class);
-        startActivity(intent);
-    }
 }

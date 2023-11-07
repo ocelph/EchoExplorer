@@ -14,19 +14,6 @@ public class Record extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
 
-        Button button = (Button) findViewById(R.id.goBackToMap);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openMap();
-            }
-        });
-
     }
 
-    public void openMap() {
-        Intent intent = new Intent(this,Map.class);
-        startActivity(intent);
-    }
 }

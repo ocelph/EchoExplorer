@@ -22,60 +22,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/addButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@color/black"
-        android:contentDescription="NULL"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.393"
-        app:layout_constraintStart_toEndOf="@+id/startText"
-        app:layout_constraintTop_toBottomOf="@+id/startPoint"
-        app:srcCompat="@drawable/addbutton"
-        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/endText"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
+        android:gravity="center"
         android:hint="Enter your destination"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/endPoint"
-        tools:ignore="MissingConstraints"
+        android:textColor="@color/white"
         android:textColorHint="@color/whitish"
-        android:textColor="@color/white"/>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/startText"
-        app:layout_constraintHorizontal_bias="0.586"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startPoint"
-        app:srcCompat="?android:attr/actionModeWebSearchDrawable" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        app:layout_constraintEnd_toStartOf="@+id/endText"
-        app:layout_constraintHorizontal_bias="0.586"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.344"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/endPoint"
-        app:srcCompat="?android:attr/actionModeWebSearchDrawable" />
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/endPoint"
@@ -96,22 +59,21 @@
 
     <EditText
         android:id="@+id/startText"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
         android:ems="10"
+        android:gravity="center"
         android:hint="Enter your start location"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startPoint"
-        tools:ignore="MissingConstraints"
+        android:textColor="@color/white"
         android:textColorHint="@color/whitish"
-        android:textColor="@color/white"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.409"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.334"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/startPoint"
@@ -130,68 +92,21 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
-    <ImageButton
-        android:id="@+id/favouritesButton"
-        android:layout_width="49dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="24dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="NULL"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintCircleRadius="100dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/solidbutton"
-        tools:layout_constraintCircleRadius="100dp" />
-
-    <ImageView
-        android:id="@+id/starimageView"
-        android:layout_width="26dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/whitestar" />
-
-    <ImageButton
-        android:id="@+id/previousrouteButton"
-        android:layout_width="49dp"
-        android:layout_height="49dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="24dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="NULL"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintCircleRadius="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/solidbutton"
-        tools:ignore="MissingConstraints"
-        tools:layout_constraintCircleRadius="100dp" />
 
     <Button
         android:id="@+id/startRoutebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="92dp"
+        android:backgroundTint="@color/white"
         android:text="START ROUTE"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        android:backgroundTint="@color/white"
-        android:textStyle= "bold"
-        android:textSize="30dp"
-        android:textColor="@color/black"/>
+        tools:ignore="MissingConstraints" />
 
-    <ImageView
-        android:id="@+id/refreshimageView"
-        android:layout_width="26dp"
-        android:layout_height="18dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/refresh" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

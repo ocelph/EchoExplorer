@@ -16,22 +16,9 @@ public class ManageRoute extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_route);
 
-
-
-        ImageButton button1= (android.widget.ImageButton) findViewById(R.id.favouritesButton);
-        Button button2 = (Button) findViewById(R.id.startRoutebutton);
-
+        Button button1= (Button) findViewById(R.id.startRoutebutton);
 
         button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openFavourites();
-            }
-        });
-
-
-
-        button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openMap();
@@ -39,12 +26,6 @@ public class ManageRoute extends AppCompatActivity {
         });
 
     }
-
-    public void openFavourites() {
-        Intent intent = new Intent(this,ListedRoutes.class);
-        startActivity(intent);
-    }
-
 
 
     public void openMap() {

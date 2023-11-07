@@ -43,15 +43,7 @@
             android:textColor="@color/black"
             android:textStyle= "bold"/>
 
-        <Button
-            android:id="@+id/buttonForBack"
-            android:layout_width="276dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:textSize="40dp"
-            android:text="BACK"
-            android:textColor="@color/black"
-            android:textStyle= "bold"/>
+
 
     </LinearLayout>
 

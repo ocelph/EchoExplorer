@@ -29,7 +29,7 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openMap();
+                openManageRoutes();
             }
         });
 
@@ -41,8 +41,8 @@ public class Login extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openMap(){
-        Intent intent = new Intent(this, Map.class);
+    public void openManageRoutes(){
+        Intent intent = new Intent(this, ManageRoute.class);
         startActivity(intent);
     }
 

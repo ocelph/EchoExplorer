@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
         Button button1= (Button) findViewById(R.id.mainLoginBtn);
         Button button2= (Button) findViewById(R.id.mainRegisterBtn);
-        Button button3= (Button) findViewById(R.id.mainManageBtn);
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,12 +34,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openManage();
-            }
-        });
+
 
 
     }
@@ -56,9 +50,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openManage() {
-        Intent intent = new Intent(this,ManageRoute.class);
-        startActivity(intent);
-    }
+
 
 }

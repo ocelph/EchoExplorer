@@ -57,6 +57,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="54dp"
@@ -73,10 +74,10 @@
             android:layout_weight="1"
             android:fontFamily="@font/poppins_medium"
             android:text="     STEM Complex (STM)"
+            android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
-            tools:ignore="MissingConstraints"
-            android:textColor="@color/white" />
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/address1"
@@ -85,9 +86,9 @@
             android:layout_weight="1"
             android:fontFamily="@font/poppins_medium"
             android:text="150 Louis-Past.."
+            android:textColor="@color/white"
             android:textSize="16sp"
-            tools:ignore="MissingConstraints"
-            android:textColor="@color/white" />
+            tools:ignore="MissingConstraints" />
     </LinearLayout>
 
     <RelativeLayout
@@ -121,7 +122,7 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="350dp"
-        android:layout_height="100dp"
+        android:layout_height="48dp"
         android:layout_marginTop="44dp"
         android:background="@drawable/border"
         app:layout_constraintEnd_toEndOf="parent"

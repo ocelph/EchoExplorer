@@ -13,10 +13,10 @@
         android:layout_height="1018dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.67"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.88"
+        app:layout_constraintVertical_bias="0.501"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -27,7 +27,7 @@
         android:fontFamily="@font/poppins_medium"
         android:text="ÉchoExplorer"
         android:textColor="#FFFFFF"
-        android:textSize="60sp"
+        android:textSize="54sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -35,6 +35,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -43,33 +44,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/manageRoute">
 
-        <Button
-            android:id="@+id/mainLoginBtn"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@null"
-            android:fontFamily="@font/poppins_medium"
-            android:text="LOGIN"
-            android:textStyle="bold"
-            android:textSize="30sp"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/white" />
-
-        <Button
-            android:id="@+id/mainRegisterBtn"
-
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@null"
-            android:fontFamily="@font/poppins_medium"
-            android:text="REGISTER"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/white"/>
-
     </LinearLayout>
+
+    <Button
+        android:id="@+id/mainRegisterBtn"
+
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/poppins_medium"
+        android:text="REGISTER"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainLoginBtn" />
+
+    <Button
+        android:id="@+id/mainLoginBtn"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="60dp"
+        android:background="@null"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/poppins_medium"
+        android:text="LOGIN"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/manageRoute"
+        app:layout_constraintVertical_bias="0.074" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MarkerDBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "MarkersDB";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     public static final String TABLE_MARKERS = "markers";
     public static final String COLUMN_ID = "_id";

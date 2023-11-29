@@ -55,6 +55,33 @@ public class MarkerDataManager {
         return markers;
     }
 
+    public List<MarkerInfo> getAllMarkerLocations() {
+        List<MarkerInfo> markerInfos = new ArrayList<>();
+        Cursor cursor = db.query(MarkerDBHelper.TABLE_MARKERS,
+                new String[]{MarkerDBHelper.COLUMN_LATITUDE, MarkerDBHelper.COLUMN_LONGITUDE, MarkerDBHelper.COLUMN_TITLE},
+                null, null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            int latitudeIndex = cursor.getColumnIndex(MarkerDBHelper.COLUMN_LATITUDE);
+            int longitudeIndex = cursor.getColumnIndex(MarkerDBHelper.COLUMN_LONGITUDE);
+            int titleIndex = cursor.getColumnIndex(MarkerDBHelper.COLUMN_TITLE);
+
+            if (latitudeIndex != -1 && longitudeIndex != -1 && titleIndex != -1) {
+                do {
+                    double latitude = cursor.getDouble(latitudeIndex);
+                    double longitude = cursor.getDouble(longitudeIndex);
+                    String title = cursor.getString(titleIndex);
+                    markerInfos.add(new MarkerInfo(new LatLng(latitude, longitude), title));
+                } while (cursor.moveToNext());
+            }
+        }
+        cursor.close();
+        return markerInfos;
+    }
+
+
+
+
 
 
 }

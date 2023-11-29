@@ -11,12 +11,14 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 
-import android.graphics.Color;
 import android.location.Location;
 import android.net.Uri;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -25,6 +27,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.GoogleMap;
 
+import android.os.Looper;
+import android.speech.tts.TextToSpeech;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
@@ -36,8 +40,7 @@ import com.google.android.gms.common.GoogleApiAvailability;
 
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.Polyline;
-import com.google.android.gms.maps.model.PolylineOptions;
+
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -45,6 +48,10 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.FusedLocationProviderClient;
 
 import android.provider.Settings;
 
@@ -55,20 +62,24 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
 import java.util.List;
+import java.util.Locale;
 import java.util.function.Consumer;
 
 
-public class Map extends AppCompatActivity implements OnMapReadyCallback {
+public class Map extends AppCompatActivity implements OnMapReadyCallback , TextToSpeech.OnInitListener {
 
     boolean isPermissionGranter;
     GoogleMap googleMap;
-    Polyline currentPolyline;
-    private List<Polyline> polylines = null;
-
     private FusedLocationProviderClient fusedLocationProviderClient;
 
     private MarkerDataManager markerDataManager;
+
+    private TextToSpeech textToSpeech;
+
+    private LocationCallback locationCallback;
+
 
 
     @Override
@@ -79,6 +90,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         Button breadCrumbButton = findViewById(R.id.breadCrumb);
         Button intersectionButton = findViewById(R.id.intersection);
+        textToSpeech = new TextToSpeech(this, this);
 
         breadCrumbButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,8 +110,6 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
         Button button2 = (Button) findViewById(R.id.other);
 
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
 
         Intent intent = getIntent();
         Location location = intent.getParcelableExtra("Location");
@@ -136,6 +146,60 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         });
     }
 
+    private void startLocationUpdates() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
+            return;
+        }
+
+        LocationRequest locationRequest = LocationRequest.create();
+        locationRequest.setInterval(10000); // Update every 10 seconds
+        locationRequest.setFastestInterval(5000); // Fastest update every 5 seconds
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        locationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                if (locationResult == null) {
+                    return;
+                }
+                for (Location location : locationResult.getLocations()) {
+                    checkMarkersProximity(location);
+                }
+            }
+        };
+
+        fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (isPermissionGranter) {
+            startLocationUpdates();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (fusedLocationProviderClient != null && locationCallback != null) {
+            fusedLocationProviderClient.removeLocationUpdates(locationCallback);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 101) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                startLocationUpdates();
+            } else {
+                Toast.makeText(this, "Permission required for location updates", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
     private void getCurrentLocation(Consumer<LatLng> onLocationReceived) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
@@ -170,6 +234,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
 
+
         // Set up the buttons
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
@@ -194,27 +259,6 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         return true;
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//
-//        if (item.getItemId() == R.id.NormalMap){
-//            googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-//        }
-//
-//        if (item.getItemId() == R.id.SatelliteMap){
-//            googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-//        }
-//
-//        if (item.getItemId() == R.id.MapHybrid){
-//            googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-//        }
-//
-//        if (item.getItemId() == R.id.MapTerrain){
-//            googleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 
     private boolean checkGooglePlayServices() {
         GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
@@ -317,5 +361,44 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
             return;
         }
         googleMap.setMyLocationEnabled(true);
+    }
+
+    public void onInit(int status) {
+        if (status == TextToSpeech.SUCCESS) {
+            textToSpeech.setLanguage(Locale.getDefault());
+        }
+    }
+
+    private void warnUser(String message) {
+        textToSpeech.speak(message, TextToSpeech.QUEUE_FLUSH, null, null);
+    }
+
+
+    private void checkMarkersProximity(Location currentLocation) {
+        for (MarkerInfo markerInfo : markerDataManager.getAllMarkerLocations()) {
+            float[] results = new float[1];
+            Location.distanceBetween(currentLocation.getLatitude(), currentLocation.getLongitude(),
+                    markerInfo.getLocation().latitude, markerInfo.getLocation().longitude,
+                    results);
+            float distanceInMeters = results[0];
+            if (distanceInMeters <= 10) { // 10 meters threshold
+                warnUser("Approaching " + markerInfo.getTitle());
+                showOnScreenMessage("Approaching " + markerInfo.getTitle());
+            }
+        }
+    }
+
+    private void showOnScreenMessage(String message) {
+        runOnUiThread(() -> Toast.makeText(Map.this, message, Toast.LENGTH_SHORT).show());
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        if (textToSpeech != null) {
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
+        super.onDestroy();
     }
 }

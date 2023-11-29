@@ -15,17 +15,17 @@ public class Other extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_other);
 
-        Button button = (Button) findViewById(R.id.buttonForSave);
+        // Button button = (Button) findViewById(R.id.buttonForSave);
         Button button1 = (Button) findViewById(R.id.buttonForShare);
         Button button2 = (Button) findViewById(R.id.buttonForNew);
         Button button3 = (Button) findViewById(R.id.buttonLogOff);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openListedRoutes();
-            }
-        });
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                openListedRoutes();
+//            }
+//        });
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override

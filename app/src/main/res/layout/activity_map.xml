@@ -42,7 +42,7 @@
             android:layout_height="60dp"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
-            android:text="BreadCrumb"
+            android:text="Breadcrumb"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />

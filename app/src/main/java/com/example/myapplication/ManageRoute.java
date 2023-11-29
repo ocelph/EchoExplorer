@@ -110,14 +110,4 @@ public class ManageRoute extends AppCompatActivity {
             return null;
         }
     }
-    public void openMap() {
-        Intent mapintent = new Intent(this, Map.class);
-        if (startlatlng != null) {
-            mapintent.putExtra("Start", startlatlng);
-        }
-        if (endlatlng != null) {
-            mapintent.putExtra("End", endlatlng);
-        }
-        startActivity(mapintent);
-    }
 }

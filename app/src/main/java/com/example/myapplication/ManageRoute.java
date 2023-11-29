@@ -1,43 +1,47 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
-import android.content.Context;
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
-
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.view.View;
-import android.content.Intent;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class ManageRoute extends AppCompatActivity {
 
+    private FusedLocationProviderClient fusedLocationProviderClient;
+    private Location currentLocation;
+
     EditText startlocation;
     EditText endlocation;
 
-    LatLng startlatlng,endlatlng = null;
-
+    LatLng startlatlng, endlatlng = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_route);
 
-        Button button1= (Button) findViewById(R.id.startRoutebutton);
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        getCurrentLocation();
+
+        Button button1 = findViewById(R.id.startRoutebutton);
 
         startlocation = findViewById(R.id.startText);
         endlocation = findViewById(R.id.endText);
@@ -45,50 +49,75 @@ public class ManageRoute extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String slocation = startlocation.getText().toString();
+                boolean fieldsEmpty = startlocation.getText().toString().isEmpty() && endlocation.getText().toString().isEmpty();
 
-
-                if (slocation == null){
-                    Toast.makeText(ManageRoute.this, "Start location not entered", Toast.LENGTH_SHORT).show();
-                } else {
-                    Geocoder startgeocoder = new Geocoder(ManageRoute.this, Locale.CANADA);
-                    try {
-                        List<Address> slistAddress = startgeocoder.getFromLocationName(slocation,1);
-                        if(slistAddress.size() > 0){
-                            startlatlng = new LatLng(slistAddress.get(0).getLatitude(),slistAddress.get(0).getLongitude());
-
-                        }
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                if (!fieldsEmpty) {
+                    startlatlng = getLocationFromAddress(startlocation.getText().toString(), "Start");
+                    endlatlng = getLocationFromAddress(endlocation.getText().toString(), "End");
                 }
 
-                String elocation = endlocation.getText().toString();
-                if (elocation == null){
-                    Toast.makeText(ManageRoute.this, "End location not entered", Toast.LENGTH_SHORT).show();
-                } else {
-                    Geocoder endgeocoder = new Geocoder(ManageRoute.this, Locale.CANADA);
-                    try {
-                        List<Address> elistAddress = endgeocoder.getFromLocationName(slocation,1);
-                        if(elistAddress.size() > 0){
-                            endlatlng = new LatLng(elistAddress.get(0).getLatitude(),elistAddress.get(0).getLongitude());
-
-                        }
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-
-                openMap();
-
+                openMap(fieldsEmpty);
             }
         });
     }
 
+    private void getCurrentLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
+            return;
+        }
+
+        fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, location -> {
+            if (location != null) {
+                currentLocation = location;
+            }
+        });
+    }
+
+    // ... getLocationFromAddress and other methods remain the same ...
+
+    public void openMap(boolean zoomToCurrentLocation) {
+        Intent mapintent = new Intent(this, Map.class);
+        if (zoomToCurrentLocation && currentLocation != null) {
+            mapintent.putExtra("CurrentLocation", new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()));
+        } else {
+            if (startlatlng != null) {
+                mapintent.putExtra("Start", startlatlng);
+            }
+            if (endlatlng != null) {
+                mapintent.putExtra("End", endlatlng);
+            }
+        }
+        startActivity(mapintent);
+    }
+
+    private LatLng getLocationFromAddress(String addressString, String locationType) {
+        if (addressString.isEmpty()) {
+            return null; // Return null if the address string is empty
+        }
+
+        Geocoder geocoder = new Geocoder(ManageRoute.this, Locale.CANADA);
+        try {
+            List<Address> listAddress = geocoder.getFromLocationName(addressString, 1);
+            if (listAddress.size() > 0) {
+                return new LatLng(listAddress.get(0).getLatitude(), listAddress.get(0).getLongitude());
+            } else {
+                Toast.makeText(ManageRoute.this, locationType + " location not found", Toast.LENGTH_SHORT).show();
+                return null;
+            }
+        } catch (IOException e) {
+            Toast.makeText(ManageRoute.this, "Error finding " + locationType + " location", Toast.LENGTH_SHORT).show();
+            return null;
+        }
+    }
     public void openMap() {
-        Intent mapintent = new Intent(this,Map.class);
-        mapintent.putExtra("Start", startlatlng);
-        mapintent.putExtra("End", endlatlng);
+        Intent mapintent = new Intent(this, Map.class);
+        if (startlatlng != null) {
+            mapintent.putExtra("Start", startlatlng);
+        }
+        if (endlatlng != null) {
+            mapintent.putExtra("End", endlatlng);
+        }
         startActivity(mapintent);
     }
 }

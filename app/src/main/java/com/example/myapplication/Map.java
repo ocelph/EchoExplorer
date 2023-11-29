@@ -11,11 +11,15 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 
 import android.graphics.Color;
+import android.location.Location;
 import android.net.Uri;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.GoogleMap;
 
@@ -48,6 +52,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 
 public class Map extends AppCompatActivity implements OnMapReadyCallback {
@@ -57,6 +62,10 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
     Polyline currentPolyline;
     private List<Polyline> polylines = null;
 
+    private FusedLocationProviderClient fusedLocationProviderClient;
+
+    private MarkerDataManager markerDataManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,13 +73,37 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         setContentView(R.layout.activity_map);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        Button breadCrumbButton = findViewById(R.id.breadCrumb);
+        Button intersectionButton = findViewById(R.id.intersection);
+
+        breadCrumbButton.setOnClickListener(v -> dropMarker("BreadCrumb"));
+        intersectionButton.setOnClickListener(v -> dropMarker("Intersection"));
+
+        markerDataManager = new MarkerDataManager(this);
+
+
+        // Initialize map
+        if (mapFragment != null) {
+            mapFragment.getMapAsync(this);
+        }
 
         Button button2 = (Button) findViewById(R.id.other);
 
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 
+        Intent intent = getIntent();
+        Location location = intent.getParcelableExtra("Location");
+        String title = intent.getStringExtra("Title");
 
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
+
+        if (location != null && title != null) {
+            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+            MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(title);
+            googleMap.addMarker(markerOptions);
+        }
 
         checkPermission();
 
@@ -90,6 +123,31 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
             @Override
             public void onClick(View v) {
                 openOther();
+            }
+        });
+    }
+
+    private void getCurrentLocation(Consumer<LatLng> onLocationReceived) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
+            return;
+        }
+
+        fusedLocationProviderClient.getLastLocation()
+                .addOnSuccessListener(this, location -> {
+                    // Got last known location
+                    if (location != null) {
+                        onLocationReceived.accept(new LatLng(location.getLatitude(), location.getLongitude()));
+                    }
+                });
+    }
+
+
+    private void dropMarker(String title) {
+        getCurrentLocation(currentLatLng -> {
+            if (googleMap != null) {
+                Marker marker = googleMap.addMarker(new MarkerOptions().position(currentLatLng).title(title));
+                markerDataManager.insertMarker(currentLatLng.latitude, currentLatLng.longitude, title);
             }
         });
     }
@@ -165,11 +223,6 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
     }
 
 
-    public void openActivity2() {
-        Intent intent = new Intent(this, Login.class);
-        startActivity(intent);
-    }
-
     public void openOther() {
         Intent intent = new Intent(this, Other.class);
         startActivity(intent);
@@ -177,74 +230,72 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
-
         this.googleMap = googleMap;
-
-
+        loadMarkers();
+        // Getting the data passed through the intent
         Intent mapintent = getIntent();
 
+        List<MarkerOptions> savedMarkers = markerDataManager.getAllMarkers();
+        for (MarkerOptions markerOptions : savedMarkers) {
+            googleMap.addMarker(markerOptions);
+        }
+        // Start Location
         LatLng slatlng = mapintent.getParcelableExtra("Start");
-        MarkerOptions smakerOptions = new MarkerOptions();
-
-        smakerOptions.title("My start position");
-        Log.d("Debugging", "Start posi" + slatlng.toString());
-        smakerOptions.position(slatlng);
-        googleMap.addMarker(smakerOptions);
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(slatlng, 15);
-        googleMap.animateCamera(cameraUpdate);
-
-        // site complex location
-        LatLng latlng = new LatLng(45.4194, -75.6786);
-        MarkerOptions makerOptions = new MarkerOptions();
-        makerOptions.title("Test");
-        makerOptions.position(latlng);
-        googleMap.addMarker(makerOptions);
-
-        LatLng elatlng = mapintent.getParcelableExtra("End");
-        MarkerOptions emakerOptions = new MarkerOptions();
-
-        emakerOptions.title("My destination");
-        Log.d("Debugging", "End posi" + elatlng.toString());
-        emakerOptions.position(elatlng);
-        googleMap.addMarker(emakerOptions);
-
-        if (currentPolyline != null){
-            currentPolyline.remove();
-            PolylineOptions polylineOptions = new PolylineOptions()
-                    .add(slatlng)  // Point 1
-                    .add(latlng)  // Point 2
-                    .color(Color.RED)  // Set your desired color
-                    .width(5);         // Set your desired width
-            currentPolyline = googleMap.addPolyline(polylineOptions);
+        if (slatlng != null) {
+            MarkerOptions smarkerOptions = new MarkerOptions();
+            smarkerOptions.title("My start position");
+            smarkerOptions.position(slatlng);
+            googleMap.addMarker(smarkerOptions);
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(slatlng, 15));
         } else {
-            PolylineOptions polylineOptions = new PolylineOptions()
-                    .add(slatlng)  // Point 1
-                    .add(latlng)  // Point 2
-                    .color(Color.RED)  // Set your desired color
-                    .width(5);         // Set your desired width
-            currentPolyline = googleMap.addPolyline(polylineOptions);
+            Log.d("Debugging", "Start position data is null");
         }
 
+        // End Location
+        LatLng elatlng = mapintent.getParcelableExtra("End");
+        if (elatlng != null) {
+            MarkerOptions emarkerOptions = new MarkerOptions();
+            emarkerOptions.title("My destination");
+            emarkerOptions.position(elatlng);
+            googleMap.addMarker(emarkerOptions);
 
+            // Polyline Logic
+            if (slatlng != null) {
+                if (currentPolyline != null) {
+                    currentPolyline.remove();
+                }
+                PolylineOptions polylineOptions = new PolylineOptions()
+                        .add(slatlng)  // Start Point
+                        .add(elatlng)  // End Point
+                        .color(Color.RED)  // Set your desired color
+                        .width(5);         // Set your desired width
+                currentPolyline = googleMap.addPolyline(polylineOptions);
+            }
+        } else {
+            Log.d("Debugging", "End position data is null");
+        }
+
+        // Map UI Settings
         googleMap.getUiSettings().setZoomControlsEnabled(true);
         googleMap.getUiSettings().setCompassEnabled(true);
         googleMap.getUiSettings().setZoomGesturesEnabled(true);
         googleMap.getUiSettings().setScrollGesturesEnabled(true);
         googleMap.getUiSettings().setRotateGesturesEnabled(true);
 
-
+        // Check for location permissions
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+            // Request for permissions if not granted
             return;
         }
         googleMap.setMyLocationEnabled(true);
-
     }
 
+    private void loadMarkers() {
+        List<MarkerOptions> markers = markerDataManager.getAllMarkers();
+        for (MarkerOptions marker : markers) {
+            googleMap.addMarker(marker);
+        }
+
+
+    }
 }
